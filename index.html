@@ -3,33 +3,298 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Excisa</title>
+<title>Excisa: self-hosted PDF redaction that proves the text is gone</title>
+<meta name="description" content="Excisa finds personal information in PDFs, lets a person approve it, removes it for good and checks that it's gone. Self-hosted: documents never leave your network.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#141b2d">
-<meta name="description" content="Excisa: self-hosted, verified PDF redaction. Coming soon.">
-<style>
-  :root { --bg:#ffffff; --fg:#141b2d; --muted:#5a6478; --accent:#3d6fd6; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#141b2d; --fg:#eef1f7; --muted:#9aa4b8; --accent:#5b8cf0; } }
-  html,body { margin:0; height:100%; background:var(--bg); color:var(--fg);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { min-height:100%; display:flex; flex-direction:column; justify-content:center;
-    max-width:40rem; margin:0 auto; padding:0 16px; box-sizing:border-box; }
-  h1 { margin:0 0 1.25rem; }
-  h1 img { display:block; height:clamp(48px,12vw,80px); width:auto; }
-  p { font-size:1.15rem; line-height:1.5; color:var(--muted); margin:.25rem 0; }
-  a { color:var(--accent); }
-</style>
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/"><picture>
+      <source srcset="/img/excisa-dark.svg" media="(prefers-color-scheme: dark)">
+      <img src="/img/excisa-light.svg" alt="Excisa">
+    </picture></a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#results">Results</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/icepdf-support.html">icepdf support</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-  <h1><picture>
-    <source srcset="img/excisa-dark.svg" media="(prefers-color-scheme: dark)">
-    <img src="img/excisa-light.svg" alt="Excisa">
-  </picture></h1>
-  <p>Self-hosted PDF redaction that proves the text is gone.</p>
-  <p>Coming soon. <a href="mailto:hello@excisa.com">hello@excisa.com</a></p>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">Early access</span>
+      <h1>PDF redaction that proves the text is gone.</h1>
+      <p class="lead">Excisa finds the personal information in your documents, a person approves it, and Excisa removes
+        it from the file for good, then checks that it's gone. It runs on your own servers, so documents never leave
+        your network.</p>
+      <div class="actions">
+        <a class="btn" href="#contact">Become a design partner</a>
+        <a class="btn ghost" href="#how">How it works</a>
+      </div>
+    </div>
+    <figure class="shot">
+      <img src="/img/review.png" width="1440" height="1100"
+        alt="The review page: a synthetic patient summary with numbered boxes over each proposed redaction, coloured by the layer that found it, beside the list of proposals with their reasons.">
+      <figcaption>Review: each proposal numbered, coloured by the layer that found it, with its reason. Synthetic
+        document; click to enlarge.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>A black box isn't a redaction</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Covered isn't removed</h3>
+        <p>A box drawn over a name leaves the name in the file. Copy and paste, a search or a text extractor brings it
+          back. Excisa removes the text, the glyphs and the image pixels under each box.</p>
+      </div>
+      <div class="card">
+        <h3>Finding it is the hard part</h3>
+        <p>Names in tables, a phone number split across two lines, a date of birth in a form field, a scanned page with
+          no text at all. Excisa proposes every redaction with its reason, so a reviewer checks instead of hunts.</p>
+      </div>
+      <div class="card">
+        <h3>Checked, not assumed</h3>
+        <p>After the burn, Excisa reads the output again (by OCR on scanned pages) and looks for every approved
+          passage. The report says <b>verified</b>, <b>failed</b> or <b>unverified</b>, and why. It never claims more
+          than it checked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><h3>Upload</h3><p>Through the review page or the REST API. Scanned pages are read by OCR.</p></li>
+      <li><h3>Detect</h3><p>Rules, a names model and an optional language model each propose redactions with a
+        reason.</p></li>
+      <li><h3>Review</h3><p>A person sees each page with numbered boxes, coloured by what found them, and unticks
+        anything wrong.</p></li>
+      <li><h3>Burn</h3><p>The approved text is removed from the page content, images, form fields, bookmarks, links
+        and metadata.</p></li>
+      <li><h3>Verify</h3><p>The output is read again. You get the redacted PDF and a report of what was removed and
+        what was checked.</p></li>
+    </ol>
+
+    <h2 style="margin-top:56px">Detection in layers</h2>
+    <p class="muted">Cheapest and most certain first. A job chooses which layers run.</p>
+    <div class="grid">
+      <div class="card layer rules">
+        <h3>Rules</h3>
+        <p>E-mail addresses, phone numbers (North American, UK and international), card numbers with their checksum,
+          postal addresses, ID numbers (SSN, NI, IBAN, labelled passport and record numbers) and dates of birth.
+          Deterministic and explainable.</p>
+      </div>
+      <div class="card layer names">
+        <h3>Names</h3>
+        <p>A local model finds people's names. Every name it finds is then searched for on every page and in every
+          form field, so a repeat isn't missed.</p>
+      </div>
+      <div class="card layer llm">
+        <h3>Your instruction</h3>
+        <p>Describe what to remove in plain language: <i>"anything that identifies the patient, but not the staff"</i>.
+          A language model that you run proposes the passages, each with its reason. It never edits the document,
+          and a passage is accepted only where it really occurs on the page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>See it work</h2>
+    <figure class="shot">
+      <img src="/img/before-after.png" width="1368" height="432" loading="lazy"
+        alt="The same page before and after: proposals outlined on the left, solid black boxes where the text was removed on the right.">
+      <figcaption>Before and after. The text under each box is gone from the file, not just hidden.</figcaption>
+    </figure>
+    <div class="split">
+      <figure class="shot">
+        <img class="for-light" src="/img/viewer-light.png" width="1200" height="800" loading="lazy"
+          alt="The redacted PDF open in the icepdf JavaFX viewer, with a search for the patient's surname finding 0 matches.">
+        <img class="for-dark" src="/img/viewer-dark.png" width="1200" height="800" loading="lazy"
+          alt="The redacted PDF open in the icepdf JavaFX viewer, with a search for the patient's surname finding 0 matches.">
+      </figure>
+      <div>
+        <h3>Gone, not hidden</h3>
+        <p>The redacted file, opened in an ordinary PDF viewer. The patient's surname appeared six times; a search of
+          the text, comments, form fields and bookmarks finds nothing.</p>
+      </div>
+    </div>
+    <div class="split">
+      <figure class="shot">
+        <img src="/img/verified.png" width="640" height="346" loading="lazy"
+          alt="The result: verification verified, nothing that was redacted can be found in the output, with a note about two short items that were burned but not searched for elsewhere in the file.">
+      </figure>
+      <div>
+        <h3>Then it checks</h3>
+        <p>The output is read again for every approved passage. Anything it couldn't check is listed (here, two
+          approved items too short to search for safely), so the reviewer knows exactly what to look at before
+          releasing the document.</p>
+      </div>
+    </div>
+    <div class="demo"><p>Recorded demo coming soon.<br>
+      <span class="small">Upload, review with the layers in colour, burn, and the before and after pages.</span></p></div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <h2>Measured, and published</h2>
+    <p class="lead">On our evaluation set of 27 synthetic documents (36 pages, 913 labelled pieces of personal
+      information, including scans, tables, forms and rosters), with no manual review:</p>
+    <div class="stats">
+      <div class="stat"><b>96%</b><span>removed, with rules, names and the language model</span></div>
+      <div class="stat"><b>100%</b><span>of e-mail, phone, card, address, ID and date-of-birth labels</span></div>
+      <div class="stat"><b>92%</b><span>of names, in every written form</span></div>
+      <div class="stat"><b>0</b><span>removed passages left in the output text</span></div>
+    </div>
+    <p class="muted small">"Removed" counts what was gone from the output with every proposal accepted as proposed. A
+      reviewer adds what's missed and unticks what's wrong. The language model was qwen2.5:14b on a single consumer GPU,
+      at about 23 seconds a page; rules and names alone take about 60 ms a page and remove 78%. The documents are
+      synthetic, so no real person's data was used.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Your documents stay with you</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Self-hosted</h3>
+        <p>One Docker image on your own servers or cloud account. No telemetry, nothing sent to us. Job files are
+          deleted when you're done, when they expire and when the service stops.</p>
+      </div>
+      <div class="card">
+        <h3>Bring your own model</h3>
+        <p>The language model is the one you choose, running where you decide: on your own GPU, or in your own cloud
+          tenancy. We publish how the models we've tested score, so you can check yours before you trust it.</p>
+      </div>
+      <div class="card">
+        <h3>Built on icepdf</h3>
+        <p>The engine that burns and verifies is <a href="https://github.com/pcorless/icepdf">icepdf</a>, an
+          open-source (Apache 2.0) Java PDF library maintained by the same developer. The part that removes your
+          text is open to inspection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <h2>Pricing</h2>
+    <p class="lead">Early access: these prices are indicative. Flat per instance, per year, in US dollars, with no limit
+      on pages, documents or users.</p>
+    <div class="prices">
+      <div class="card price">
+        <h3>Community</h3>
+        <div class="amount">Free</div>
+        <p class="muted small">Students, teaching and research</p>
+        <ul>
+          <li>Rules and OCR</li>
+          <li>Review page and verification report</li>
+          <li>One instance, up to 4 vCPU</li>
+          <li>Watermarked output</li>
+          <li>Public issue tracker</li>
+        </ul>
+      </div>
+      <div class="card price featured">
+        <h3>Team</h3>
+        <div class="amount">~$3,000</div>
+        <p class="muted small">per instance a year</p>
+        <ul>
+          <li>Every layer: rules, names and your instruction</li>
+          <li>OCR, review and verification report</li>
+          <li>One instance, up to 8 vCPU</li>
+          <li>E-mail support and updates</li>
+        </ul>
+      </div>
+      <div class="card price">
+        <h3>Organisation</h3>
+        <div class="amount">~$9,000</div>
+        <p class="muted small">a year</p>
+        <ul>
+          <li>Everything in Team</li>
+          <li>Up to 3 instances (production, test, standby), 16 vCPU each</li>
+          <li>Support handled first, fixes prioritised</li>
+          <li>Help choosing and tuning a model</li>
+        </ul>
+      </div>
+      <div class="card price">
+        <h3>OEM and enterprise</h3>
+        <div class="amount">From ~$15,000</div>
+        <p class="muted small">a year</p>
+        <ul>
+          <li>Embedding in your product</li>
+          <li>More instances or capacity</li>
+          <li>Custom terms</li>
+        </ul>
+      </div>
+    </div>
+    <p class="muted small" style="margin-top:20px">A free trial build of every paid tier stamps a watermark on its output
+      and is for evaluation only.</p>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="wrap">
+    <h2>Design partners wanted</h2>
+    <p class="lead">We're looking for two or three organisations that redact documents for a living: records and
+      FOI teams, legal, healthcare, HR. You get a free or heavily discounted first year; we get your feedback on real
+      work and, if it goes well, a case study.</p>
+    <p>Write to <a href="mailto:hello@excisa.com">hello@excisa.com</a> and tell us what you redact, roughly how much, and
+      what you use today.</p>
+    <div class="actions">
+      <a class="btn" href="mailto:hello@excisa.com?subject=Excisa%20design%20partner">Get in touch</a>
+    </div>
+  </div>
+</section>
+
 </main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <picture>
+        <source srcset="/img/excisa-software-dark.svg" media="(prefers-color-scheme: dark)">
+        <img src="/img/excisa-software-light.svg" alt="Excisa Software">
+      </picture>
+      <p>Alberta, Canada</p>
+    </div>
+    <ul>
+      <li><a href="mailto:hello@excisa.com">hello@excisa.com</a></li>
+      <li><a href="mailto:sales@excisa.com">sales@excisa.com</a></li>
+      <li><a href="mailto:security@excisa.com">security@excisa.com</a></li>
+    </ul>
+    <ul>
+      <li><a href="/icepdf-support.html">icepdf support</a></li>
+      <li><a href="https://github.com/pcorless/icepdf">icepdf on GitHub</a></li>
+      <li>This site sets no cookies and has no analytics.</li>
+    </ul>
+  </div>
+</footer>
+
+<dialog id="lightbox" class="lightbox" aria-label="Screenshot">
+  <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
+  <div class="lightbox-body"></div>
+</dialog>
+<script src="/site.js" defer></script>
+
 </body>
 </html>
