@@ -88,6 +88,7 @@ ol.steps li::before { content: counter(s); font-weight: 700; color: var(--accent
 .price .amount { font-size: 1.6rem; font-weight: 700; margin: .2em 0; }
 .price ul { padding-left: 1.1em; margin: .8em 0 0; }
 .price li { margin-bottom: .3em; }
+.price .soon { margin: 1em 0 0; font-size: .85rem; font-weight: 600; color: var(--accent); }
 .price.featured { border-color: var(--accent); border-width: 2px; }
 
 table { border-collapse: collapse; width: 100%; }
