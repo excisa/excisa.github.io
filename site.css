@@ -151,3 +151,14 @@ ol.thumbs h3::before { content: counter(t) "  "; color: var(--accent); }
 ol.thumbs p { color: var(--muted); font-size: .95rem; margin: 0; }
 .lightbox-body video { display: block; width: 100%; height: auto; max-height: 94vh; }
 @media (max-width: 760px) { ol.thumbs { grid-template-columns: minmax(0, 1fr); } }
+
+/* phones: the menu gets its own row under the logo, one line, scrolling sideways if it must */
+@media (max-width: 640px) {
+  .top .wrap { height: auto; flex-wrap: wrap; padding-top: 14px; padding-bottom: 10px; gap: 10px; }
+  .top nav .wide { display: none; }
+  .top nav a[href="/icepdf-support.html"] { text-transform: capitalize; }
+  .top nav a[href$="#results"] { display: none; }
+  .top nav { width: 100%; flex-wrap: nowrap; overflow-x: auto; gap: 12px; justify-content: space-between; font-size: .9rem; white-space: nowrap;
+    scrollbar-width: none; padding-bottom: 2px; }
+  .top nav::-webkit-scrollbar { display: none; }
+}
