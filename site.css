@@ -67,9 +67,6 @@ ol.steps li::before { content: counter(s); font-weight: 700; color: var(--accent
 .layer h3 { color: var(--c); }
 .layer.rules { --c: var(--rules); } .layer.names { --c: var(--names); } .layer.llm { --c: var(--llm); }
 
-/* demo placeholder */
-.demo { aspect-ratio: 16 / 9; max-height: 22rem; width: 100%; border: 1px dashed var(--line); border-radius: 8px; display: grid;
-  place-items: center; color: var(--muted); background: var(--bg); text-align: center; padding: 20px; }
 
 /* numbers */
 #results .lead { max-width: none; }
@@ -134,8 +131,22 @@ figure.shot figcaption { color: var(--muted); font-size: .9rem; margin-top: 10px
 }
 .lightbox-close:hover, .lightbox-close:focus-visible { background: var(--accent); color: var(--accent-fg); }
 
-.split { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: center; margin: 40px 0; }
-.split > * { min-width: 0; }
-@media (max-width: 760px) { .split { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
-.for-dark { display: none !important; }
-@media (prefers-color-scheme: dark) { .for-light { display: none !important; } .for-dark { display: block !important; } }
+
+/* demo video and the three stills under it */
+figure.video { margin: 28px 0 0; }
+.video-frame { position: relative; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+  box-shadow: 0 8px 30px rgba(20, 27, 45, .12); background: #000; }
+.video-frame video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.video-expand { position: absolute; right: 14px; top: 14px; padding: 8px 14px; border: 0; border-radius: 6px;
+  background: rgba(20, 27, 45, .85); color: #fff; font: 600 .95rem system-ui, sans-serif; cursor: pointer; }
+.video-expand:hover, .video-expand:focus-visible { background: var(--accent); color: var(--accent-fg); }
+figure.video figcaption { color: var(--muted); font-size: .9rem; margin-top: 10px; }
+ol.thumbs { list-style: none; padding: 0; margin: 36px 0 0; display: grid; gap: 28px;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); counter-reset: t; }
+ol.thumbs li { counter-increment: t; }
+ol.thumbs figure.shot img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; }
+ol.thumbs h3 { margin: 14px 0 4px; }
+ol.thumbs h3::before { content: counter(t) "  "; color: var(--accent); }
+ol.thumbs p { color: var(--muted); font-size: .95rem; margin: 0; }
+.lightbox-body video { display: block; width: 100%; height: auto; max-height: 94vh; }
+@media (max-width: 760px) { ol.thumbs { grid-template-columns: minmax(0, 1fr); } }

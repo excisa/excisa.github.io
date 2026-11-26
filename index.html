@@ -119,38 +119,44 @@
 <section class="alt">
   <div class="wrap">
     <h2>See it work</h2>
-    <figure class="shot">
-      <img src="/img/before-after.png" width="1368" height="432" loading="lazy"
-        alt="The same page before and after: proposals outlined on the left, solid black boxes where the text was removed on the right.">
-      <figcaption>Before and after. The text under each box is gone from the file, not just hidden.</figcaption>
+    <p class="lead">One synthetic case file, from upload to a verified result, using all three layers and the
+      instruction "anything that identifies the patient, but not the staff".</p>
+    <figure class="video" data-title="Excisa, start to finish" data-full="/video/excisa-demo.mp4">
+      <div class="video-frame">
+        <video class="video-loop" autoplay muted loop playsinline preload="metadata" poster="/video/excisa-demo-poster.jpg"
+          aria-label="Review, untick a staff name, redact, verify, and search the output in a PDF viewer">
+          <source src="/video/excisa-demo-loop.webm" type="video/webm">
+          <source src="/video/excisa-demo-loop.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption>Click to play the full clip (40 s, no sound). The language model's wait is sped up and says so.</figcaption>
     </figure>
-    <div class="split">
-      <figure class="shot">
-        <img class="for-light" src="/img/viewer-light.png" width="1200" height="800" loading="lazy"
-          alt="The redacted PDF open in the icepdf JavaFX viewer, with a search for the patient's surname finding 0 matches.">
-        <img class="for-dark" src="/img/viewer-dark.png" width="1200" height="800" loading="lazy"
-          alt="The redacted PDF open in the icepdf JavaFX viewer, with a search for the patient's surname finding 0 matches.">
-      </figure>
-      <div>
-        <h3>Gone, not hidden</h3>
-        <p>The redacted file, opened in an ordinary PDF viewer. The patient's surname appeared six times; a search of
-          the text, comments, form fields and bookmarks finds nothing.</p>
-      </div>
-    </div>
-    <div class="split">
-      <figure class="shot">
-        <img src="/img/verified.png" width="640" height="346" loading="lazy"
-          alt="The result: verification verified, nothing that was redacted can be found in the output, with a note about two short items that were burned but not searched for elsewhere in the file.">
-      </figure>
-      <div>
-        <h3>Then it checks</h3>
-        <p>The output is read again for every approved passage. Anything it couldn't check is listed (here, two
-          approved items too short to search for safely), so the reviewer knows exactly what to look at before
-          releasing the document.</p>
-      </div>
-    </div>
-    <div class="demo"><p>Recorded demo coming soon.<br>
-      <span class="small">Upload, review with the layers in colour, burn, and the before and after pages.</span></p></div>
+    <ol class="thumbs">
+      <li>
+        <figure class="shot">
+          <img src="/img/burn-thumb.png" loading="lazy"
+            alt="Part of page 1 before and after: the patient's details outlined, then removed; Dr Rasmussen, a staff member, left in place.">
+        </figure>
+        <h3>Burn</h3>
+        <p>Approved text is removed from the file. The staff name the reviewer unticked stays.</p>
+      </li>
+      <li>
+        <figure class="shot">
+          <img src="/img/verified.png" loading="lazy"
+            alt="The result: verification verified, with a note listing two short items that were burned but not searched for elsewhere.">
+        </figure>
+        <h3>Verify</h3>
+        <p>The output is read again. Anything that couldn't be checked is listed for the reviewer.</p>
+      </li>
+      <li>
+        <figure class="shot">
+          <img src="/img/viewer.png" loading="lazy"
+            alt="The redacted PDF in the icepdf viewer: a search for the patient's surname finds 0 matches.">
+        </figure>
+        <h3>Gone</h3>
+        <p>Open the output in any viewer: a search for the patient's surname finds nothing.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
