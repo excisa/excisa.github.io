@@ -31,13 +31,23 @@
 
 <main>
 
-<section>
-  <div class="wrap">
-    <span class="tag">icepdf support</span>
-    <h1>Commercial support for icepdf.</h1>
-    <p class="lead"><a href="https://github.com/pcorless/icepdf">icepdf</a> is an open-source (Apache 2.0) Java library for
-      rendering, viewing, annotating, signing and redacting PDF. Excisa<span class="tm">™</span> Software offers paid support for it, from the
-      developer who maintains it.</p>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">icepdf support</span>
+      <h1>Commercial support for icepdf.</h1>
+      <p class="lead"><a href="https://github.com/pcorless/icepdf">icepdf</a> is an open-source (Apache 2.0) Java library for
+        rendering, viewing, annotating, signing and redacting PDF. Excisa<span class="tm">™</span> Software offers paid
+        support for it, from the developer who maintains it.</p>
+    </div>
+    <div class="hero-visual">
+      <img class="hero-cube" src="/img/icepdf/icepdf-cube.svg" alt="" width="132" height="132">
+      <figure class="shot">
+        <img class="for-light" src="/img/icepdf/hero-light.png" width="1200" height="800"
+          alt="The icepdf JavaFX viewer showing a field report with highlights, and a comments panel listing notes from four reviewers.">
+        <img class="for-dark" src="/img/icepdf/hero-dark.png" width="1200" height="800" alt="">
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -128,6 +138,12 @@
   </div>
   <div class="wrap"><p class="legal">© 2026 Corless Services. Excisa is a trademark of Corless Services.</p></div>
 </footer>
+
+<dialog id="lightbox" class="lightbox" aria-label="Screenshot">
+  <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
+  <div class="lightbox-body"></div>
+</dialog>
+<script src="/site.js" defer></script>
 
 </body>
 </html>
