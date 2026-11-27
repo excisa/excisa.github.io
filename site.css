@@ -56,11 +56,6 @@ p { margin: 0 0 1em; }
 .card { border: 1px solid var(--line); border-radius: 8px; padding: 20px; background: var(--bg); }
 .card p:last-child { margin-bottom: 0; }
 
-/* how it works */
-ol.steps { list-style: none; padding: 0; margin: 0; counter-reset: s;
-  display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); }
-ol.steps li { counter-increment: s; border-top: 3px solid var(--accent); padding-top: 12px; }
-ol.steps li::before { content: counter(s); font-weight: 700; color: var(--accent); display: block; margin-bottom: 4px; }
 
 /* layers */
 .layer { border-left: 4px solid var(--c); }
@@ -110,7 +105,7 @@ figure.shot figcaption { color: var(--muted); font-size: .9rem; margin-top: 10px
 
 /* hero: text left, screenshot right */
 .hero { padding: 56px 0 64px; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
 .hero-grid > * { min-width: 0; }
 .hero h1 { font-size: clamp(2rem, 4vw, 2.75rem); }
 .hero .lead { font-size: 1.1rem; }
@@ -165,3 +160,4 @@ ol.thumbs p { color: var(--muted); font-size: .95rem; margin: 0; }
 
 .tm { font-size: .55em; vertical-align: super; line-height: 0; margin-left: .05em; }
 footer p { margin: 0 0 .4em; }
+footer .legal { width: 100%; margin: 28px 0 0; padding-top: 16px; border-top: 1px solid var(--line); font-size: .85rem; }
