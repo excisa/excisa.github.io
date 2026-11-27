@@ -79,7 +79,7 @@ p { margin: 0 0 1em; }
 }
 
 /* pricing */
-.prices { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.prices { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
 .price .amount { font-size: 1.6rem; font-weight: 700; margin: .2em 0; }
 .price ul { padding-left: 1.1em; margin: .8em 0 0; }
 .price li { margin-bottom: .3em; }
@@ -161,3 +161,14 @@ ol.thumbs p { color: var(--muted); font-size: .95rem; margin: 0; }
 .tm { font-size: .55em; vertical-align: super; line-height: 0; margin-left: .05em; }
 footer p { margin: 0 0 .4em; }
 footer .legal { width: 100%; margin: 28px 0 0; padding-top: 16px; border-top: 1px solid var(--line); font-size: .85rem; }
+
+/* one vertical rhythm for every section: heading -> intro 19px (h2 margin), intro -> content 28px,
+   content -> small print 20px, 64px above and below every section's content */
+.wrap > .lead { margin-bottom: 0; }
+.wrap > :is(.grid, .prices, .stats, figure.video, .thumbs, .actions, figure.shot) { margin-top: 28px; margin-bottom: 0; }
+.wrap > h2 + :is(.grid, .prices, .stats, figure.video, .thumbs) { margin-top: 28px; }
+.wrap > .note { margin: 20px 0 0; }
+.wrap > p + p { margin-top: 1em; }
+main section .wrap > :last-child { margin-bottom: 0; }
+.stats { margin-left: 32px; margin-right: 32px; }
+@media (max-width: 760px) { .stats { margin-left: 0; margin-right: 0; } }
