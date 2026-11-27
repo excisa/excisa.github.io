@@ -9,6 +9,17 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#141b2d">
+<link rel="canonical" href="https://excisa.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Excisa">
+<meta property="og:url" content="https://excisa.com/">
+<meta property="og:title" content="Excisa: self-hosted PDF redaction that proves the text is gone">
+<meta property="og:description" content="Excisa finds personal information in PDFs, lets a person approve it, removes it for good and checks that it's gone. Self-hosted: documents never leave your network.">
+<meta property="og:image" content="https://excisa.com/img/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Excisa: PDF redaction that proves the text is gone. A redacted page and a search finding 0 matches.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
@@ -152,7 +163,7 @@
     <div class="stats">
       <div class="stat"><b>96%</b><span>removed, with rules, names and the language model</span></div>
       <div class="stat"><b>100%</b><span>of e-mail, phone, card, address, ID and date-of-birth labels</span></div>
-      <div class="stat"><b>92%</b><span>of names, in every written form</span></div>
+      <div class="stat"><b>92%</b><span>of names, counting every written form</span></div>
       <div class="stat"><b>0</b><span>removed passages left in the output text</span></div>
     </div>
     <p class="muted small note">"Removed" counts what was gone from the output with every proposal accepted as is; a
@@ -172,8 +183,9 @@
       </div>
       <div class="card">
         <h3>Bring your own model</h3>
-        <p>Use the language model you choose, on your own GPU or in your own cloud tenancy. We publish how the models
-          we've tested score, so you can check yours.</p>
+        <p>The language model runs where you decide: on your own GPU today (Ollama), or an OpenAI-compatible endpoint
+          in your own cloud on request. We test models on the same evaluation set and can tell you how yours
+          compares.</p>
       </div>
       <div class="card">
         <h3>Built on icepdf</h3>
@@ -199,7 +211,7 @@
           <li>Review page and verification report</li>
           <li>One instance, up to 4 vCPU</li>
           <li>Watermarked output</li>
-          <li>Public issue tracker</li>
+          <li>Community support</li>
         </ul>
         <p class="soon">Download coming soon</p>
       </div>
