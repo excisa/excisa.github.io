@@ -37,7 +37,7 @@ h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 650; letter-spacing: -.01em
 h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 650; }
 h3 { font-size: 1.1rem; font-weight: 650; }
 p { margin: 0 0 1em; }
-.lead { font-size: 1.2rem; color: var(--muted); max-width: 42rem; }
+.lead { font-size: 1.2rem; color: var(--muted); }
 .muted { color: var(--muted); }
 .small { font-size: .9rem; }
 .tag {
@@ -64,7 +64,6 @@ p { margin: 0 0 1em; }
 
 
 /* numbers */
-#results .lead { max-width: none; }
 .stats {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 2rem 32px; padding: 24px 0;
   background: var(--bg-alt); border: 1px solid var(--line); border-radius: 10px;
@@ -172,3 +171,5 @@ footer .legal { width: 100%; margin: 28px 0 0; padding-top: 16px; border-top: 1p
 main section .wrap > :last-child { margin-bottom: 0; }
 .stats { margin-left: 32px; margin-right: 32px; }
 @media (max-width: 760px) { .stats { margin-left: 0; margin-right: 0; } }
+/* one line length for every paragraph that sits directly in a section (intro, body, small print) */
+.wrap > p { max-width: 46rem; }
