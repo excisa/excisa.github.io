@@ -27,8 +27,9 @@ img { max-width: 100%; }
   background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
-.top .logo img { display: block; height: 28px; width: auto; }
+:root { --header: 56px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: var(--header); }
+.top .logo img { display: block; height: 26px; width: auto; }
 .top nav { display: flex; gap: 20px; flex-wrap: wrap; font-size: .95rem; }
 .top nav a { color: var(--fg); text-decoration: none; }
 .top nav a:hover, .top nav a[aria-current] { color: var(--accent); }
@@ -152,7 +153,7 @@ ol.thumbs p { color: var(--muted); font-size: .95rem; margin: 0; }
 
 /* phones: the menu gets its own row under the logo, one line, scrolling sideways if it must */
 @media (max-width: 640px) {
-  .top .wrap { height: auto; flex-wrap: wrap; padding-top: 14px; padding-bottom: 10px; gap: 10px; }
+  .top .wrap { height: auto; flex-wrap: wrap; padding-top: 12px; padding-bottom: 8px; gap: 8px; }
   .top nav .wide { display: none; }
   .top nav a[href="/icepdf-support.html"] { text-transform: capitalize; }
   .top nav a[href$="#results"] { display: none; }
@@ -188,6 +189,6 @@ main section .wrap > :last-child { margin-bottom: 0; }
 
 /* jumps from the menu land below the sticky header, not under it */
 html { scroll-behavior: smooth; }
-section[id] { scroll-margin-top: 64px; }
-@media (max-width: 640px) { section[id] { scroll-margin-top: 92px; } }
+section[id] { scroll-margin-top: calc(var(--header) + 1px); }
+@media (max-width: 640px) { section[id] { scroll-margin-top: 80px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
